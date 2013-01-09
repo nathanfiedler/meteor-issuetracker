@@ -1,0 +1,53 @@
+.project {
+  cursor: pointer;
+}
+
+.project.selected {
+  color: #FFF;
+  background-color: #222;
+}
+
+.issue {
+  cursor: pointer;
+}
+
+.issue td.open {
+  color: #000;
+  text-decoration: none;
+  background-color: #DFF0D8;
+}
+
+.issue.selected td.open {
+  color: #FFF;
+  background-color: #222;
+}
+
+.issue td.closed, .issue td.duplicate, .issue td.out-of-scope {
+  color: #AAA;
+  text-decoration: line-through;
+  background-color: #F9F9F9;
+}
+
+.issue.selected td.closed, .issue.selected td.duplicate, .issue.selected td.out-of-scope {
+  color: #CCC;
+  background-color: #222;
+}
+
+.status-dropdown-toggle {
+  min-width: 86px;
+  max-width: 86px;
+}
+
+#issueInfo.stuck {
+  position: fixed;
+  top: 51px;
+  width: 32.42%;
+}
+
+/* Landscape Phone And Smaller */
+@media (max-width: 767px) {
+  #issueInfo.stuck {
+    position: static;
+    width: auto;
+  }
+}
