@@ -11,31 +11,40 @@
   cursor: pointer;
 }
 
-.issue td.open {
-  color: #000;
-  text-decoration: none;
-  background-color: #DFF0D8;
+.issue td.new {
+  background-color: #E5FFE5;
 }
 
-.issue.selected td.open {
+.issue td.need-information {
+  background-color: #FFE5E5;
+}
+
+.issue td.assigned {
+  background-color: #FFFFE5;
+}
+
+.issue td.resolved {
+  background-color: #E5F2FF;
+}
+
+.issue td.closed {
+  color: #AAA;
+  text-decoration: line-through;
+  background-color: #F5F5F5;
+}
+
+.issue.selected td {
   color: #FFF;
   background-color: #222;
 }
 
-.issue td.closed, .issue td.duplicate, .issue td.out-of-scope {
-  color: #AAA;
-  text-decoration: line-through;
-  background-color: #F9F9F9;
-}
-
-.issue.selected td.closed, .issue.selected td.duplicate, .issue.selected td.out-of-scope {
+.issue.selected td.closed {
   color: #CCC;
-  background-color: #222;
 }
 
 .status-dropdown-toggle {
-  min-width: 86px;
-  max-width: 86px;
+  min-width: 110px;
+  max-width: 110px;
 }
 
 #issueInfo.stuck {

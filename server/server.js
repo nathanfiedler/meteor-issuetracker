@@ -15,13 +15,13 @@ Meteor.startup(function () {
       var _pid = Projects.insert({projectTitle: projectTitle, projectDescription: "", projectCreatedTime: projectCreatedTime});
       
       var issueTitleSuffixChars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-      var issueStatus = ["Closed", "Duplicate", "Open", "Out Of Scope"];
+      var issueStatus = ["New", "Need Information", "Assigned", "Resolved", "Closed"];
       
       for (var j = 0; j < numberOfIssuesToCreatePerProject; j++) {
         var issueTitleSuffix = issueTitleSuffixChars[Math.floor(Math.random() * issueTitleSuffixChars.length) + 0] + issueTitleSuffixChars[Math.floor(Math.random() * issueTitleSuffixChars.length) + 0] + issueTitleSuffixChars[Math.floor(Math.random() * issueTitleSuffixChars.length) + 0];
         var issueTitle = "Sample Issue " + issueTitleSuffix;
         var issueCreatedTime = ((new Date()).getTime()) - (Math.floor(Math.random() * 1209600000) + 60000); // Randomize time from 1 minute to 10 days ago
-        var randomIssueStatus = Math.floor(Math.random() * 4) + 0;
+        var randomIssueStatus = Math.floor(Math.random() * issueStatus.length) + 0;
         
         Issues.insert({_pid: _pid, issueNumber: 0, issueTitle: issueTitle, issueDescription: "XXXXXX", issueStatus: issueStatus[randomIssueStatus], issueCreatedTime: issueCreatedTime});
       }
