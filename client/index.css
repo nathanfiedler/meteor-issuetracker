@@ -40,14 +40,27 @@
 
 #issueInfo.stuck {
   position: fixed;
-  top: 51px;
   width: 32.42%;
 }
 
+@media only screen and (min-width: 768px) and (max-width: 979px) {
+  #issueInfo.stuck {
+    top: 10px;
+  }
+}
+
+@media only screen and (min-width: 980px) {
+  #issueInfo.stuck {
+    top: 51px;
+  }
+}
+
 /* Landscape Phone And Smaller */
+/*
 @media (max-width: 767px) {
   #issueInfo.stuck {
     position: static;
     width: auto;
   }
 }
+*/
