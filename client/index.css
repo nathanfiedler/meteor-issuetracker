@@ -1,3 +1,7 @@
+#projectInfoB {
+
+}
+
 .project {
   cursor: pointer;
 }
@@ -42,6 +46,30 @@
   color: #CCC;
 }
 
+.icon-issue-status {
+  border: 1px solid #000000;
+}
+
+.icon-issue-status-new {
+  background-color: #E5FFE5;
+}
+
+.icon-issue-status-need-information {
+  background-color: #FFE5E5;
+}
+
+.icon-issue-status-assigned {
+  background-color: #FFFFE5;
+}
+
+.icon-issue-status-resolved {
+  background-color: #E5F2FF;
+}
+
+.icon-issue-status-closed {
+  background-color: #F5F5F5;
+}
+
 .status-dropdown-toggle {
   min-width: 110px;
   max-width: 110px;
@@ -63,13 +91,3 @@
     top: 51px;
   }
 }
-
-/* Landscape Phone And Smaller */
-/*
-@media (max-width: 767px) {
-  #issueInfo.stuck {
-    position: static;
-    width: auto;
-  }
-}
-*/
