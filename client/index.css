@@ -19,6 +19,10 @@
   width: 20%;
 }
 
+#projectInfoB #projectInfoB_TotalIssues td.total {
+  background-color: #FDFDFD;
+}
+
 .issue td.new,
 #projectInfoB td.new,
 .icon-issue-status-new {
