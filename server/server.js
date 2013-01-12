@@ -24,7 +24,7 @@ Meteor.startup(function () {
       var _pid = Projects.insert({projectTitle: projectTitle, projectDescription: "", projectCreatedTime: projectCreatedTime});
       
       var issueTitleSuffixChars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-      var issueStatus = ["New", "Need Information", "Assigned", "Resolved", "Closed"];
+      var issueStatus = ["New", "Discuss", "Assigned", "Resolved", "Closed"];
       
       for (var j = 0; j < numberOfIssuesToCreatePerProject; j++) {
         var issueTitleSuffix = issueTitleSuffixChars[Math.floor(Math.random() * issueTitleSuffixChars.length) + 0] + issueTitleSuffixChars[Math.floor(Math.random() * issueTitleSuffixChars.length) + 0] + issueTitleSuffixChars[Math.floor(Math.random() * issueTitleSuffixChars.length) + 0];

@@ -26,19 +26,19 @@
 .issue td.new,
 #projectInfoB td.new,
 .icon-issue-status-new {
-  background-color: #E5FFE5;
+  background-color: #FFE5E5;
 }
 
-.issue td.need-information,
-#projectInfoB td.need-information,
-.icon-issue-status-need-information {
-  background-color: #FFE5E5;
+.issue td.discuss,
+#projectInfoB td.discuss,
+.icon-issue-status-discuss {
+  background-color: #FFFFE5;
 }
 
 .issue td.assigned,
 #projectInfoB td.assigned,
 .icon-issue-status-assigned {
-  background-color: #FFFFE5;
+  background-color: #E5FFE5;
 }
 
 .issue td.resolved,
