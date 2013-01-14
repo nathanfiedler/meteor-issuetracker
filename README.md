@@ -43,8 +43,9 @@ Windows: http://win.meteor.com/
 5. Run Meteor  
       `$ meteor`  
 
-6. Open browser to `http://localhost:3000`
+6. Open browser to `http://localhost:3000`  
 
+NOTE: You may want to change the authToken string in `server/server.js` (line 6) to another random string or password. If you don't, you may get CRUD operations from unwanted guests! Alternatively, you can just comment out `collectionApi.start();` (line 9) to disable the API.  
 
 Demo
 -------------------

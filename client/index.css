@@ -1,7 +1,3 @@
-#projectInfoB {
-
-}
-
 .project {
   cursor: pointer;
 }
@@ -15,40 +11,49 @@
   cursor: pointer;
 }
 
-#projectInfoB #projectInfoB_TotalsByIssueStatus td {
+#projectInfo hr, #issueInfo hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 1em 0;
+  padding: 0;
+}
+
+#projectInfoOverview #projectInfoOverview_TotalsByIssueStatus td {
   width: 20%;
 }
 
-#projectInfoB #projectInfoB_TotalIssues td.total {
+#projectInfoOverview #projectInfoOverview_TotalIssues td.total {
   background-color: #FDFDFD;
 }
 
 .issue td.new,
-#projectInfoB td.new,
+#projectInfoOverview td.new,
 .icon-issue-status-new {
   background-color: #FFE5E5;
 }
 
 .issue td.discuss,
-#projectInfoB td.discuss,
+#projectInfoOverview td.discuss,
 .icon-issue-status-discuss {
   background-color: #FFFFE5;
 }
 
 .issue td.assigned,
-#projectInfoB td.assigned,
+#projectInfoOverview td.assigned,
 .icon-issue-status-assigned {
   background-color: #E5FFE5;
 }
 
 .issue td.resolved,
-#projectInfoB td.resolved,
+#projectInfoOverview td.resolved,
 .icon-issue-status-resolved {
   background-color: #E5F2FF;
 }
 
 .issue td.closed,
-#projectInfoB td.closed,
+#projectInfoOverview td.closed,
 .icon-issue-status-closed {
   background-color: #F5F5F5;
 }
@@ -72,8 +77,8 @@
 }
 
 .status-dropdown-toggle {
-  min-width: 110px;
-  max-width: 110px;
+  min-width: 59px;
+  max-width: 59px;
 }
 
 #issueInfo.stuck {
