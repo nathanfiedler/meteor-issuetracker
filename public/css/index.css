@@ -1,0 +1,99 @@
+.project {
+  cursor: pointer;
+}
+
+.project.selected {
+  color: #FFF;
+  background-color: #222;
+}
+
+.issue {
+  cursor: pointer;
+}
+
+#projectInfo hr, #issueInfo hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 1em 0;
+  padding: 0;
+}
+
+#projectInfoOverview #projectInfoOverview_TotalsByIssueStatus td {
+  width: 20%;
+}
+
+#projectInfoOverview #projectInfoOverview_TotalIssues td.total {
+  background-color: #FDFDFD;
+}
+
+.issue td.new,
+#projectInfoOverview td.new,
+.icon-issue-status-new {
+  background-color: #FFE5E5;
+}
+
+.issue td.discuss,
+#projectInfoOverview td.discuss,
+.icon-issue-status-discuss {
+  background-color: #FFFFE5;
+}
+
+.issue td.assigned,
+#projectInfoOverview td.assigned,
+.icon-issue-status-assigned {
+  background-color: #E5FFE5;
+}
+
+.issue td.resolved,
+#projectInfoOverview td.resolved,
+.icon-issue-status-resolved {
+  background-color: #E5F2FF;
+}
+
+.issue td.closed,
+#projectInfoOverview td.closed,
+.icon-issue-status-closed {
+  background-color: #F5F5F5;
+}
+
+.issue td.closed {
+  color: #AAA;
+  text-decoration: line-through;
+}
+
+.issue.selected td {
+  color: #FFF;
+  background-color: #222;
+}
+
+.issue.selected td.closed {
+  color: #CCC;
+}
+
+.icon-issue-status {
+  border: 1px solid #000000;
+}
+
+.status-dropdown-toggle {
+  min-width: 59px;
+  max-width: 59px;
+}
+
+#issueInfo.stuck {
+  position: fixed;
+  width: 32.42%;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 979px) {
+  #issueInfo.stuck {
+    top: 10px;
+  }
+}
+
+@media only screen and (min-width: 980px) {
+  #issueInfo.stuck {
+    top: 51px;
+  }
+}
