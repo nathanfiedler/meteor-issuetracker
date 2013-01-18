@@ -13,6 +13,9 @@ var router = connect.middleware.router(function(route) {
         var _url = url.parse(req.url, true);
         
         res.setHeader("Access-Control-Allow-Origin", "*");
+        //res.setHeader("Access-Control-Allow-Origin", "http://www.yoursite.com");
+        res.setHeader("Access-Control-Allow-Methods", "GET");
+        res.setHeader("Access-Control-Allow-Headers", "Accept, Cache-Control, Connection, Content-Type, Host, Origin, Referer, User-Agent, X-Requested-With");
         res.setHeader("Content-Type", "text/plain");
         
         if (_url.query["action"] && _url.query["collection"]) {

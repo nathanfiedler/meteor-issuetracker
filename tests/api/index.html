@@ -27,7 +27,7 @@
   <script src="js/bootstrap.min.js"></script>
 
   <script type="text/javascript">
-    var _url = "http://localhost:3000/api/B6D49B2D0F2F16C2";
+    var _url = "http://localhost:3000/api/B6D49B2D0F2F16C2"; // Meteor server and authToken from api.js
     
     function resetFields() {
       $("#_id").val("")
@@ -37,6 +37,7 @@
     }
   
     $("document").ready(function() {
+
       $("#button1").click(function() {
         var _id = "";
         var title = "";
@@ -54,6 +55,23 @@
           $("#results").val(textStatus);
         });
       });
+      /*
+      // Using XMLHttpRequest instead as another way to connect to the API
+      $("#button1").click(function() {
+        var _id = "";
+        var title = "";
+        var description = "";
+        var xhr = new XMLHttpRequest();
+        //xhr.open("GET", _url + "?action=find&collection=projects&_id=&title=&description=", true);
+        xhr.open("GET", _url + "?action=find&collection=projects&_id="+_id+"&title="+title+"&description="+description, true);
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4) {
+            $("#results").val(xhr.responseText);
+          }
+        }
+        xhr.send();
+      });
+      */
       $("#button2").click(function() {
         var _id = "";
         var title = "";
@@ -155,6 +173,7 @@
         }
         else alert("Enter an issue _id into the _id input field.");
       });
+
     });
   </script>
 
@@ -225,19 +244,19 @@
           <div class="controls controls-row">
             <div class="input-append">
               <span class="add-on">_id</span>
-              <input class="span6" id="_id" type="text" placeholder="_id">
+              <input class="span6" id="_id" type="text" maxlength="36" placeholder="_id">
             </div>
           </div>
           <div class="controls controls-row">
             <div class="input-append">
               <span class="add-on">Title</span>
-              <input class="span6" id="title" type="text" placeholder="Title">
+              <input class="span6" id="title" type="text" maxlength="200" placeholder="Title">
             </div>
           </div>
           <div class="controls controls-row">
             <div class="input-append">
               <span class="add-on">Description</span>
-              <input class="span6" id="description" type="text" placeholder="Description">
+              <input class="span6" id="description" type="text" maxlength="1500" placeholder="Description">
             </div>
           </div>
           <div class="controls controls-row">
