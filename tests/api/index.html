@@ -27,7 +27,8 @@
   <script src="js/bootstrap.min.js"></script>
 
   <script type="text/javascript">
-    var _url = "http://localhost:3000/api/B6D49B2D0F2F16C2"; // Meteor server and authToken from api.js
+    var _default_url = "http://localhost:3000/api/B6D49B2D0F2F16C2"; // Default meteor server and authToken from api.js
+    var _url = _default_url;
     
     function resetFields() {
       $("#_id").val("")
@@ -37,6 +38,17 @@
     }
   
     $("document").ready(function() {
+    
+      $("#apiURL").val(_url);
+      $("#apiURL").keyup(function() {
+        if ($("#apiURL").val()) {
+          _url = $("#apiURL").val();
+        }
+        else {
+          $("#apiURL").val(_default_url);
+          _url = _default_url;
+        }
+      });
 
       $("#button1").click(function() {
         var _id = "";
@@ -242,22 +254,16 @@
         </div>
         <div class="span10">
           <div class="controls controls-row">
-            <div class="input-append">
-              <span class="add-on">_id</span>
+              <input class="span6" id="apiURL" type="text" placeholder="Meteor URL">
+          </div>
+          <div class="controls controls-row">
               <input class="span6" id="_id" type="text" maxlength="36" placeholder="_id">
-            </div>
           </div>
           <div class="controls controls-row">
-            <div class="input-append">
-              <span class="add-on">Title</span>
               <input class="span6" id="title" type="text" maxlength="200" placeholder="Title">
-            </div>
           </div>
           <div class="controls controls-row">
-            <div class="input-append">
-              <span class="add-on">Description</span>
               <input class="span6" id="description" type="text" maxlength="1500" placeholder="Description">
-            </div>
           </div>
           <div class="controls controls-row">
             <textarea class="span10" id="results" rows="25" placeholder="Server Response. If no response after an action, check JavaScript console."></textarea>
