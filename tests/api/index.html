@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Issue Tracker API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <!-- JavaScript -->
+  <script src="js/jquery-1.9.0.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+    var _url = "http://localhost:3000/api/B6D49B2D0F2F16C2";
+    
+    function resetFields() {
+      $("#_id").val("")
+      $("#title").val("");
+      $("#description").val("");
+      $("#results").val("")
+    }
+  
+    $("document").ready(function() {
+      $("#button1").click(function() {
+        var _id = "";
+        var title = "";
+        var description = "";
+        resetFields();
+        var request = $.ajax({
+          type: "GET",
+          url: _url,
+          data: {action: "find", collection: "projects", _id: _id, title: title, description: description}
+        });
+        request.done(function(data) {
+          $("#results").val(data);
+        });
+        request.fail(function(jqXHR, textStatus) {
+          $("#results").val(textStatus);
+        });
+      });
+      $("#button2").click(function() {
+        var _id = "";
+        var title = "";
+        var description = "";
+        resetFields();
+        var request = $.ajax({
+          type: "GET",
+          url: _url,
+          data: {action: "find", collection: "issues", _id: _id, title: title, description: description}
+        });
+        request.done(function(data) {
+          $("#results").val(data);
+        });
+        request.fail(function(jqXHR, textStatus) {
+          $("#results").val(textStatus);
+        });
+      });
+      $("#button3").click(function() {
+        var _id = "";
+        var title = $("#title").val();
+        var description = $("#description").val();
+        if (title) {
+          resetFields();
+          var request = $.ajax({
+            type: "GET",
+            url: _url,
+            data: {action: "insert", collection: "projects", _id: _id, title: title, description: description}
+          });
+          request.done(function(data) {
+            $("#results").val(data);
+          });
+          request.fail(function(jqXHR, textStatus) {
+            $("#results").val(textStatus);
+          });
+        }
+        else alert("Enter a project title into the Title input field.");
+      });
+      $("#button4").click(function() {
+        var _id = $("#_id").val(); // This needs to be the _id of the project to insert the issue into
+        var title = $("#title").val();
+        var description = $("#description").val();
+        if (_id) {
+          if (title) {
+            resetFields();
+            var request = $.ajax({
+              type: "GET",
+              url: _url,
+              data: {action: "insert", collection: "issues", _id: _id, title: title, description: description}
+            });
+            request.done(function(data) {
+              $("#results").val(data);
+            });
+            request.fail(function(jqXHR, textStatus) {
+              $("#results").val(textStatus);
+            });
+          }
+          else alert("Enter an issue title into the Title input field.");
+        }
+        else alert("Enter a project _id into the _id input field.");
+      });
+      
+      $("#button5").click(function() {
+        var _id = $("#_id").val(); // This needs to be the _id of the project to remove
+        var title = "";
+        var description = "";
+        if (_id) {
+          resetFields();
+          var request = $.ajax({
+            type: "GET",
+            url: _url,
+            data: {action: "remove", collection: "projects", _id: _id, title: title, description: description}
+          });
+          request.done(function(data) {
+            $("#results").val(data);
+          });
+          request.fail(function(jqXHR, textStatus) {
+            $("#results").val(textStatus);
+          });
+        }
+        else alert("Enter a project _id into the _id input field.");
+      });
+      $("#button6").click(function() {
+        var _id = $("#_id").val(); // This needs to be the _id of the issue to remove
+        var title = "";
+        var description = "";
+        if (_id) {
+          resetFields();
+          var request = $.ajax({
+            type: "GET",
+            url: _url,
+            data: {action: "remove", collection: "issues", _id: _id, title: title, description: description}
+          });
+          request.done(function(data) {
+            $("#results").val(data);
+          });
+          request.fail(function(jqXHR, textStatus) {
+            $("#results").val(textStatus);
+          });
+        }
+        else alert("Enter an issue _id into the _id input field.");
+      });
+    });
+  </script>
+
+  <!-- Icons -->
+  <link rel="shortcut icon" href="ico/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+</head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#">Issue Tracker API</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>Issue Tracker API</h1>
+        <p>Let's modify the Projects and Issues collections externally!</p>
+      </div>
+
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span2">
+          <fieldset>
+            <div class="controls controls-row">
+              <div class="btn-toolbar">
+                <button type="button" id="button1" class="btn btn-primary">Find Projects <i class="icon-ok icon-white"></i></button>
+              </div>
+            </div>
+            <div class="controls controls-row">
+              <div class="btn-toolbar">
+                <button type="button" id="button2" class="btn btn-primary">Find Issues <i class="icon-ok icon-white"></i></button>
+              </div>
+            </div>
+            <div class="controls controls-row">
+              <div class="btn-toolbar">
+                <button type="button" id="button3" class="btn btn-primary">Insert Project <i class="icon-ok icon-white"></i></button>
+              </div>
+            </div>
+            <div class="controls controls-row">
+              <div class="btn-toolbar">
+                <button type="button" id="button4" class="btn btn-primary">Insert Issue <i class="icon-ok icon-white"></i></button>
+              </div>
+            </div>
+            <div class="controls controls-row">
+              <div class="btn-toolbar">
+                <button type="button" id="button5" class="btn btn-primary">Remove Project <i class="icon-ok icon-white"></i></button>
+              </div>
+            </div>
+            <div class="controls controls-row">
+              <div class="btn-toolbar">
+                <button type="button" id="button6" class="btn btn-primary">Remove Issue <i class="icon-ok icon-white"></i></button>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="span10">
+          <div class="controls controls-row">
+            <div class="input-append">
+              <span class="add-on">_id</span>
+              <input class="span6" id="_id" type="text" placeholder="_id">
+            </div>
+          </div>
+          <div class="controls controls-row">
+            <div class="input-append">
+              <span class="add-on">Title</span>
+              <input class="span6" id="title" type="text" placeholder="Title">
+            </div>
+          </div>
+          <div class="controls controls-row">
+            <div class="input-append">
+              <span class="add-on">Description</span>
+              <input class="span6" id="description" type="text" placeholder="Description">
+            </div>
+          </div>
+          <div class="controls controls-row">
+            <textarea class="span10" id="results" rows="25" placeholder="Server Response. If no response after an action, check JavaScript console."></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+</html>
