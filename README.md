@@ -36,6 +36,8 @@ Windows: http://win.meteor.com/
 
 NOTE: In `server/api.js`, you may want to change the authToken string (line 6) to another random string or password. If you don't, you may get CRUD operations from unwanted guests! Alternatively, you can just comment out `app.use(router);` at the very bottom to disable the API.  
 
+Look in the 'tests/api' directory for the API tester!  
+
 Demo
 -------------------
 http://issuetracker.meteor.com
