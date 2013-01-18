@@ -1,16 +1,7 @@
 Meteor.startup(function () {
-
-  // Easily perform CRUD operations on Meteor Collections over HTTP/HTTPS from outside of the Meteor client or server environment
-  // You may want to change the authToken string to another random character string for your application
-  // More info: https://github.com/crazytoad/meteor-collectionapi
-  collectionApi = new CollectionAPI({authToken: '67F45D61BCBC4585643E3C51F743CD51'});
-  collectionApi.addCollection(Projects, 'projects');
-  collectionApi.addCollection(Issues, 'issues');
-  collectionApi.start();
-
   // On first launch, the Projects and Issues collections will be empty
   // Let's create some sample projects and issues
-  var numberOfProjectsToCreate = 6;
+  var numberOfProjectsToCreate = 3;
   var numberOfIssuesToCreatePerProject = 20;
   
   if ((Projects.find().count() === 0)&&(Issues.find().count() === 0)) {
