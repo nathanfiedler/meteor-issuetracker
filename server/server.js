@@ -1,6 +1,26 @@
 Meteor.startup(function () {
-  // On first launch, the Projects and Issues collections will be empty
-  // Let's create some sample projects and issues
+  // Users and Roles
+  var adminEmail = "admin@domain.com";
+  var adminPassword = "123456";
+
+  var testEmail = "test@domain.com";
+  var testPassword = "123456";
+
+  Accounts.onCreateUser(function(options, user) {
+    user.role = user.emails[0].address === adminEmail ? "admin" : "user";
+    if (options.profile) {
+      user.profile = options.profile;
+    }
+    return user;
+  });
+
+  if (Meteor.users.find().count() === 0) {
+    Accounts.createUser({email: adminEmail, password: adminPassword});
+    Accounts.createUser({email: testEmail, password: testPassword});
+  }
+
+  // If the Projects and Issues collections are empty, create some sample project and issue data.
+  // If you don't need any sample data, set both numberOfProjectsToCreate and numberOfIssuesToCreatePerProject to 0.
   var numberOfProjectsToCreate = 3;
   var numberOfIssuesToCreatePerProject = 20;
   
