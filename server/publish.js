@@ -32,16 +32,34 @@ Meteor.publish("allUserData", function () {
 Projects = new Meteor.Collection("projects");
 Projects.allow({
   insert: function (userId, doc) {
-    // User must be logged in
-    return (userId);
+    if (userId) { // User must be logged in
+      var user = Meteor.users.findOne({_id: userId});
+      if (user.role === "admin") { // User must have an admin role to change a role
+        return true;
+      }
+      else return false;
+    }
+    else return false;
   },
   update: function (userId, docs, fields, modifier) {
-    // User must be logged in
-    return (userId);
+    if (userId) { // User must be logged in
+      var user = Meteor.users.findOne({_id: userId});
+      if (user.role === "admin") { // User must have an admin role to change a role
+        return true;
+      }
+      else return false;
+    }
+    else return false;
   },
   remove: function (userId, docs) {
-    // User must be logged in
-    return (userId);
+    if (userId) { // User must be logged in
+      var user = Meteor.users.findOne({_id: userId});
+      if (user.role === "admin") { // User must have an admin role to change a role
+        return true;
+      }
+      else return false;
+    }
+    else return false;
   }
 });
 Meteor.publish('projects', function () {
