@@ -1,11 +1,11 @@
 // Users
 Meteor.users.deny({
   insert: function (userId, doc) {
-    // Not allowed
+    // No inserting users (for now)
     return true;
   },
   remove: function (userId, docs) {
-    // Not allowed
+    // No removing users (for now)
     return true;
   }
 });
@@ -13,7 +13,7 @@ Meteor.users.allow({
   update: function (userId, docs, fields, modifier) {
     if (userId) { // User must be logged in
       var user = Meteor.users.findOne({_id: userId});
-      if (user.role === "admin") { // User must have an admin role to change a role
+      if (user.role === "admin") { // If user has an admin role, allow the update
         return true;
       }
       else return false;
@@ -34,7 +34,7 @@ Projects.allow({
   insert: function (userId, doc) {
     if (userId) { // User must be logged in
       var user = Meteor.users.findOne({_id: userId});
-      if (user.role === "admin") { // User must have an admin role to change a role
+      if (user.role === "admin") { // User must have an admin role to insert a project
         return true;
       }
       else return false;
@@ -44,17 +44,25 @@ Projects.allow({
   update: function (userId, docs, fields, modifier) {
     if (userId) { // User must be logged in
       var user = Meteor.users.findOne({_id: userId});
-      if (user.role === "admin") { // User must have an admin role to change a role
+      if (user.role === "admin") { // If user has an admin role, allow the update
         return true;
       }
-      else return false;
+      else {
+        if (user.role === "user") { // If user has a user role, only allow an update to the lastIssueNumber field
+          if (_.contains(fields, "lastIssueNumber")) {
+            return true;
+          }
+          else return false;
+        }
+        else return false;
+      }
     }
     else return false;
   },
   remove: function (userId, docs) {
     if (userId) { // User must be logged in
       var user = Meteor.users.findOne({_id: userId});
-      if (user.role === "admin") { // User must have an admin role to change a role
+      if (user.role === "admin") { // User must have an admin role to remove a project
         return true;
       }
       else return false;

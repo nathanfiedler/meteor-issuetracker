@@ -3,9 +3,6 @@ Meteor.startup(function () {
   var adminEmail = "admin@domain.com"; // Change for your project
   var adminPassword = "123456";        // Change for your project
   
-  var userEmail = "user@domain.com";   // Change or remove for your project
-  var userPassword = "123456";         // Change or remove for your project
-
   Accounts.onCreateUser(function(options, user) {
     user.role = user.emails[0].address === adminEmail ? "admin" : "user";
     if (options.profile) {
@@ -14,12 +11,10 @@ Meteor.startup(function () {
     return user;
   });
 
+  var adminUser; // The _id of the admin user is stored here when we create the admin user below
   if (Meteor.users.find().count() === 0) {
     if (adminEmail && adminPassword) {
-      Accounts.createUser({email: adminEmail, password: adminPassword});
-    }
-    if (userEmail && userPassword) {
-      Accounts.createUser({email: userEmail, password: userPassword});
+      adminUser = Accounts.createUser({email: adminEmail, password: adminPassword});
     }
   }
 
@@ -36,7 +31,7 @@ Meteor.startup(function () {
       var projectTitle = "Sample Project " + projectTitleSuffix;
       var projectCreatedDate = ((new Date()).getTime()) - (Math.floor(Math.random() * 1209600000) + 60000); // Randomize date from 1 minute to 10 days ago
       
-      var _pid = Projects.insert({projectTitle: projectTitle, projectDescription: "", projectCreatedDate: projectCreatedDate, lastIssueNumber: 0});
+      var _pid = Projects.insert({projectTitle: projectTitle, projectDescription: "", projectCreatedDate: projectCreatedDate, lastIssueNumber: 0, users: []});
       
       var issueTitleSuffixChars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
       var issueStatus = ["New", "Discuss", "Assigned", "Resolved", "Closed"];
@@ -57,6 +52,8 @@ Meteor.startup(function () {
         issueNumber++;
       });
       Projects.update(_pid, {$set: {lastIssueNumber: (issueNumber - 1)}});
+      
+      if (adminUser) Projects.update(_pid, {$addToSet: {users: {_id: adminUser}}});
     }
   }
 });
