@@ -1,7 +1,7 @@
 Meteor.startup(function () {
   // Users and Roles
-  var adminEmail = "admin@domain.com"; // Change for your project
-  var adminPassword = "123456";        // Change for your project
+  var adminEmail = "admin@domain.com"; // Change for your project. This should match the same variable in publish.js
+  var adminPassword = "123456";        // Change for your project. This should match the same variable in publish.js
   
   Accounts.onCreateUser(function(options, user) {
     user.role = user.emails[0].address === adminEmail ? "admin" : "user";

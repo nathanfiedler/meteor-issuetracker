@@ -1,4 +1,7 @@
-// Users
+// Users and Roles
+var adminEmail = "admin@domain.com"; // Change for your project. This should match the same variable in server.js
+var adminPassword = "123456";        // Change for your project. This should match the same variable in server.js
+
 Meteor.users.deny({
   insert: function (userId, doc) {
     // No inserting users (for now)
@@ -13,7 +16,7 @@ Meteor.users.allow({
   update: function (userId, docs, fields, modifier) {
     if (userId) { // User must be logged in
       var user = Meteor.users.findOne({_id: userId});
-      var adminUser = Meteor.users.findOne({"emails.0.address": "admin@domain.com"});
+      var adminUser = Meteor.users.findOne({"emails.0.address": adminEmail});
       if (user.role === "admin") { // If user has an admin role
         return _.all(docs, function(doc) {
           // The update won't happen if:
