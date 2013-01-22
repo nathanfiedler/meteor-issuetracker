@@ -20,9 +20,9 @@ Built With
 Notes
 -------------------
 * In `server/api.js`, you may want to change the authToken string (line 6) to another random string or password. If you don't, you may get CRUD operations from unwanted guests! Alternatively, you can just comment out `app.use(router);` at the very bottom to disable the API.
-* When you login/create a new user, that user's default role will be "user", which will limit your functionality at the Project level. Login with the pre-made Admin account "admin@domain.com/123456", click on the Users tab at the top, and give yourself (or whoever) an "admin" role.
-* Change the default Admin and User accounts in In `server/server.js` for your application.
-* Look in the 'tests/api' directory for the API tester!  
+* When you login (i.e. create an account) as a new user, your default role will be "user", which will limit your functionality at the Project level (creating, updating and deleting). Login with the pre-made admin account "admin@domain.com/123456", click on the Users tab at the top, and give yourself (or whoever) an "admin" role.
+* Change the pre-made admin and user accounts in In `server/server.js` for your instance (if need be).
+* Look in the 'tests/api' directory for the API tester! Change `localhost:3000` to `issuetracker.meteor.com` for added fun!
 
 
 Setup
