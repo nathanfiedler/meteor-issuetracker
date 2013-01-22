@@ -13,8 +13,17 @@ Meteor.users.allow({
   update: function (userId, docs, fields, modifier) {
     if (userId) { // User must be logged in
       var user = Meteor.users.findOne({_id: userId});
-      if (user.role === "admin") { // If user has an admin role, allow the update
-        return true;
+      var adminUser = Meteor.users.findOne({"emails.0.address": "admin@domain.com"});
+      if (user.role === "admin") { // If user has an admin role
+        return _.all(docs, function(doc) {
+          // The update won't happen if:
+          //   * The user is trying to update the role of the default admin user
+          //   * The user is trying to update their own role
+          if (doc._id != adminUser._id && doc._id != user._id) {
+            return true;
+          }
+          else return false;
+        });
       }
       else return false;
     }
