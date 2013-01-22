@@ -1,16 +1,3 @@
-.project {
-  cursor: pointer;
-}
-
-.project.selected {
-  color: #FFF;
-  background-color: #222;
-}
-
-.issue {
-  cursor: pointer;
-}
-
 #projectInfo hr, #issueInfo hr {
   display: block;
   height: 1px;
@@ -28,37 +15,50 @@
   background-color: #FDFDFD;
 }
 
-.issue td.new,
+.project {
+  cursor: pointer;
+}
+
+.project.selected {
+  color: #FFF;
+  background-color: #222;
+}
+
+.issue {
+  cursor: pointer;
+}
+
+.issue.new td,
 #projectInfoOverview td.new,
 .icon-issue-status-new {
   background-color: #FFE5E5;
 }
 
-.issue td.discuss,
+.issue.discuss td,
 #projectInfoOverview td.discuss,
 .icon-issue-status-discuss {
   background-color: #FFFFE5;
 }
 
-.issue td.assigned,
+.issue.assigned td,
 #projectInfoOverview td.assigned,
 .icon-issue-status-assigned {
   background-color: #E5FFE5;
 }
 
-.issue td.resolved,
+.issue.resolved td,
 #projectInfoOverview td.resolved,
 .icon-issue-status-resolved {
   background-color: #E5F2FF;
 }
 
-.issue td.closed,
+.issue.closed td,
 #projectInfoOverview td.closed,
 .icon-issue-status-closed {
   background-color: #F5F5F5;
 }
 
-.issue td.closed {
+.issue.closed td {
   color: #AAA;
   text-decoration: line-through;
 }
@@ -76,9 +76,9 @@
   border: 1px solid #000000;
 }
 
-.status-dropdown-toggle {
-  min-width: 59px;
-  max-width: 59px;
+.issue-status-dropdown-toggle, .user-role-dropdown-toggle {
+  min-width: 79px;
+  max-width: 79px;
 }
 
 #issueInfo.stuck {

@@ -1,10 +1,10 @@
 Meteor.startup(function () {
   // Users and Roles
-  var adminEmail = "admin@domain.com";
-  var adminPassword = "123456";
-
-  var testEmail = "test@domain.com";
-  var testPassword = "123456";
+  var adminEmail = "admin@domain.com"; // Change for your project
+  var adminPassword = "123456";        // Change for your project
+  
+  var userEmail = "user@domain.com";   // Change or remove for your project
+  var userPassword = "123456";         // Change or remove for your project
 
   Accounts.onCreateUser(function(options, user) {
     user.role = user.emails[0].address === adminEmail ? "admin" : "user";
@@ -15,14 +15,18 @@ Meteor.startup(function () {
   });
 
   if (Meteor.users.find().count() === 0) {
-    Accounts.createUser({email: adminEmail, password: adminPassword});
-    Accounts.createUser({email: testEmail, password: testPassword});
+    if (adminEmail && adminPassword) {
+      Accounts.createUser({email: adminEmail, password: adminPassword});
+    }
+    if (userEmail && userPassword) {
+      Accounts.createUser({email: userEmail, password: userPassword});
+    }
   }
 
   // If the Projects and Issues collections are empty, create some sample project and issue data.
   // If you don't need any sample data, set both numberOfProjectsToCreate and numberOfIssuesToCreatePerProject to 0.
-  var numberOfProjectsToCreate = 3;
-  var numberOfIssuesToCreatePerProject = 20;
+  var numberOfProjectsToCreate = 3;          // Change for your project
+  var numberOfIssuesToCreatePerProject = 20; // Change for your project
   
   if ((Projects.find().count() === 0)&&(Issues.find().count() === 0)) {
     var projectTitleSuffixChars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
