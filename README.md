@@ -21,8 +21,6 @@ Notes
 -------------------
 * In `server/config.js` and `server/api.js`, you may want to change the default variable values for your project.
 
-* When you login with a new user account, your default role will be "user". By default, you will have no projects available to you To give yourself an "admin" role, login with the admin account (the default account is admin@domain.com/123456), click on the Users tab at the top, and change your (or anybody else's) role.
-
 * When you login with a new user account, you won't have any projects to access, and your role will be "user" (which prohibits you from assigning project users and project creation, updates and deletion).
 
   Logout and login with the admin account (the default account is admin@domain.com/123456), click on the Users tab in the top nav bar, and change your (or anybody else's) role to "admin".
