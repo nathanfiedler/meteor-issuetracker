@@ -1,12 +1,15 @@
+// You may want to change these variable values for your project
+var apiEnabled = true;
+var apiAuthToken = "B6D49B2D0F2F16C2";
+// -------------------------------------------------------------
+
 var fibers = __meteor_bootstrap__.require("fibers");
 var connect = __meteor_bootstrap__.require("connect");
 var url = __meteor_bootstrap__.require("url");
 var app = __meteor_bootstrap__.app;
 
-var authToken = "B6D49B2D0F2F16C2"; // Change for your project
-
 var router = connect.middleware.router(function(route) {
-  route.get("/api/"+authToken, function(req, res, next) {
+  route.get("/api/"+apiAuthToken, function(req, res, next) {
     var fn = Fiber(function() {
       try {
         var _fiber = Fiber.current;
@@ -62,7 +65,8 @@ var router = connect.middleware.router(function(route) {
               if (_url.query["title"]) {
                 switch (_url.query["collection"].toLowerCase()) {
                   case "projects":
-                    insert_id = Projects.insert({projectTitle: _url.query["title"], projectDescription: _url.query["description"], projectCreatedDate: ((new Date()).getTime()), lastIssueNumber: 0});
+                    var adminUser = Meteor.users.findOne({"emails.0.address": adminEmail});
+                    insert_id = Projects.insert({projectTitle: _url.query["title"], projectDescription: _url.query["description"], projectCreatedDate: ((new Date()).getTime()), lastIssueNumber: 0, users: [{_id: adminUser._id}]});
                     cursor = Projects.find({_id: insert_id});
                     break;
                   case "issues":
@@ -227,4 +231,4 @@ var router = connect.middleware.router(function(route) {
   return;
 });
 
-app.use(router);  // Comment out this line to disable API functions
+if (apiEnabled) app.use(router);

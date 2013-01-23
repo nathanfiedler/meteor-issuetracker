@@ -24,6 +24,10 @@
   background-color: #222;
 }
 
+.projectUser {
+  cursor: pointer;
+}
+
 .issue {
   cursor: pointer;
 }
