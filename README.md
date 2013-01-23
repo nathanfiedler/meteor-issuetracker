@@ -23,7 +23,7 @@ Notes
 
 * When you login with a new user account, you won't have any projects to access, and your role will be "user" (which prohibits you from assigning project users and project creation, updates and deletion).
 
-  Logout and login with the admin account (the default account is admin@domain.com/123456), click on the Users tab in the top nav bar, and change your (or anybody else's) role to "admin".
+  Logout and login with an admin account (the email and password for the default admin account is **admin@domain.com** / **123456**), click on the Users tab in the top nav bar, and change your (or anybody else's) role to "admin".
 
 * Look in the 'tests/api' directory for the API tester! Change `localhost:3000` to `issuetracker.meteor.com` to perform actions on the demo below!
 
