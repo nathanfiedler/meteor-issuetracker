@@ -25,7 +25,7 @@ Notes
 
   Logout and login with an admin account (the email and password for the default admin account is **admin@domain.com** / **123456**), click on the Users tab in the top nav bar, and change your (or anybody else's) role to "admin".
 
-* Includes a simple API using RESTful GET! Look in the 'tests/api-tests' directory for some two examples on how to interact with it. Change `localhost:3000` to `issuetracker.meteor.com` in the Meteor URL text field to perform actions on the demo below!
+* Includes a simple API using RESTful GET! Look in the 'tests/api-tests' directory for two examples on how to interact with it. Change `localhost:3000` to `issuetracker.meteor.com` in the Meteor URL text field to perform actions on the demo below!
 
 
 Setup
