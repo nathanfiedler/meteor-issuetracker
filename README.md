@@ -10,10 +10,12 @@ Built With
 * Meteor -- http://www.meteor.com
 * jQuery -- http://jquery.com
 * Bootstrap -- http://twitter.github.com/bootstrap
+* Font Awesome -- http://fortawesome.github.com/Font-Awesome
 * jQuery BlockUI -- http://jquery.malsup.com/block
 * jQuery ScrollTo -- http://flesler.blogspot.com/2007/10/jqueryscrollto.html
 * jQuery Waypoints with Sticky Elements extension -- http://imakewebthings.com/jquery-waypoints
 * toastr -- https://github.com/CodeSeven/toastr
+* wysihtml5 -- http://xing.github.com/wysihtml5
 * "f" is for Format & WHAT THE diff?? -- http://fisforformat.sourceforge.net  
 
 
@@ -24,6 +26,8 @@ Notes
 * When you login with a new user account, you won't have any projects to access, and your role will be "user" (which prohibits you from assigning project users and project creation, updates and deletion).
 
   Logout and login with an admin account (the email and password for the default admin account is **admin@domain.com** / **123456**), click on the Users tab in the top nav bar, and change your (or anybody else's) role to "admin".
+
+* To disable the wysihtml5 editor, set `wysihtml5Enabled` to `false` in `client/client.js`.
 
 * Includes a simple API using RESTful GET! Look in the 'tests/api-tests' directory for two examples on how to interact with it. Change `localhost:3000` to `issuetracker.meteor.com` in the Meteor URL text field to perform actions on the demo below!
 

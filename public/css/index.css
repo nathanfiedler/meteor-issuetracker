@@ -1,3 +1,11 @@
+#projectInfo textarea {
+  height: 110px;
+}
+
+#issueInfo textarea {
+  height: 410px;
+}
+
 #projectInfo hr, #issueInfo hr {
   display: block;
   height: 1px;
@@ -33,32 +41,27 @@
 }
 
 .issue.new td,
-#projectInfoOverview td.new,
-.icon-issue-status-new {
+#projectInfoOverview td.new {
   background-color: #FFE5E5;
 }
 
 .issue.discuss td,
-#projectInfoOverview td.discuss,
-.icon-issue-status-discuss {
+#projectInfoOverview td.discuss {
   background-color: #FFFFE5;
 }
 
 .issue.assigned td,
-#projectInfoOverview td.assigned,
-.icon-issue-status-assigned {
+#projectInfoOverview td.assigned {
   background-color: #E5FFE5;
 }
 
 .issue.resolved td,
-#projectInfoOverview td.resolved,
-.icon-issue-status-resolved {
+#projectInfoOverview td.resolved {
   background-color: #E5F2FF;
 }
 
 .issue.closed td,
-#projectInfoOverview td.closed,
-.icon-issue-status-closed {
+#projectInfoOverview td.closed {
   background-color: #F5F5F5;
 }
 
@@ -76,8 +79,28 @@
   color: #CCC;
 }
 
-.icon-issue-status {
-  border: 1px solid #000000;
+.icon-issue-status-new {
+  color: #FFE5E5;
+}
+
+.icon-issue-status-discuss {
+  color: #FFFFE5;
+}
+
+.icon-issue-status-assigned {
+  color: #E5FFE5;
+}
+
+.icon-issue-status-resolved {
+  color: #E5F2FF;
+}
+
+.icon-issue-status-closed {
+  color: #F5F5F5;
+}
+
+.icon-issue-status-shadow {
+  text-shadow: 1px 1px 1px #ccc;
 }
 
 .issue-status-dropdown-toggle, .user-role-dropdown-toggle {
