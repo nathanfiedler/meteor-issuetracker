@@ -109,10 +109,10 @@ var router = connect.middleware.router(function(route) {
                     }
                     break;
                   default:
-                    // ERROR: COLLECTION NOT FOUND
-                    console.log(JSON.stringify([{error:"COLLECTION NOT FOUND"}]));
-                    res.statusCode = 404;
-                    res.write(JSON.stringify([{error:"COLLECTION NOT FOUND"}]));
+                    // ERROR: COLLECTION NOT SUPPORTED
+                    console.log(JSON.stringify([{error:"COLLECTION NOT SUPPORTED"}]));
+                    res.statusCode = 501;
+                    res.write(JSON.stringify([{error:"COLLECTION NOT SUPPORTED"}]));
                     res.end();
                     return;
                 }
