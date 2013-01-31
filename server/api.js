@@ -62,11 +62,11 @@ var router = connect.middleware.router(function(route) {
               var cursor;
               var documents = [];
               var insert_id;
-              if (_url.query["title"]) {
+              if (_url.query["title"].stripHTML()) {
                 switch (_url.query["collection"].toLowerCase()) {
                   case "projects":
                     var adminUser = Meteor.users.findOne({"emails.0.address": adminEmail});
-                    insert_id = Projects.insert({projectTitle: _url.query["title"], projectDescription: _url.query["description"], projectCreatedDate: ((new Date()).getTime()), lastIssueNumber: 0, users: [{_id: adminUser._id}]});
+                    insert_id = Projects.insert({projectTitle: _url.query["title"].stripHTML(), projectDescription: _url.query["description"].sanitizeHTML(), projectCreatedDate: ((new Date()).getTime()), lastIssueNumber: 0, users: [{_id: adminUser._id}]});
                     cursor = Projects.find({_id: insert_id});
                     break;
                   case "issues":
@@ -75,7 +75,7 @@ var router = connect.middleware.router(function(route) {
                       if (project) {
                         var lastIssueNumber = project.lastIssueNumber;
                         var nextIssueNumber = lastIssueNumber + 1;
-                        insert_id = Issues.insert({_pid: _url.query["_id"], issueNumber: nextIssueNumber, issueTitle: _url.query["title"], issueDescription: _url.query["description"], issueStatus: "New", issueCreatedDate: ((new Date()).getTime())});
+                        insert_id = Issues.insert({_pid: _url.query["_id"], issueNumber: nextIssueNumber, issueTitle: _url.query["title"].stripHTML(), issueDescription: _url.query["description"].sanitizeHTML(), issueStatus: "New", issueCreatedDate: ((new Date()).getTime())});
                         if (insert_id) {
                           Projects.update(_url.query["_id"], {$set: {lastIssueNumber: nextIssueNumber}});
                         }
@@ -230,5 +230,17 @@ var router = connect.middleware.router(function(route) {
   });
   return;
 });
+
+String.prototype.sanitizeHTML = function (white, black) {
+  if (!white) white = "b|strong|i|em|u|p|br|ul|ol|li|blockquote"; // Default elements allowed
+  if (!black) black = "script|object|embed"; // Default elements not allowed
+  exp = new RegExp("(<(" + black + ")[^>]*>.*</\\2>|(?!<[/]?(" + white + ")(\\s[^<]*>|[/]>|>))<[^<>]*>|(?!<[^<>\\s]+)\\s[^</>]+(?=[/>]))", "gi");
+  return this.replace(exp, "");
+};
+
+String.prototype.stripHTML = function() {
+  exp = new RegExp("<(?:.|\s)*?>", "gi");
+  return this.replace(exp, "");
+};
 
 if (apiEnabled) app.use(router);
