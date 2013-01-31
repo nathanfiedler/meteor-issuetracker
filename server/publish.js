@@ -62,7 +62,6 @@ Projects.allow({
       if (user.role === "admin") { // // User has an admin role
         // We don't want the default admin to be removed as a project user from any project
         if (_.contains(fields, "users")) {
-          console.log((_.values(modifier))[0].users._id);
           var newProjectUser = (_.values(modifier))[0].users._id;
           if (newProjectUser !== adminUser._id) {
             return true;
@@ -94,8 +93,8 @@ Projects.allow({
     else return false;
   }
 });
-Meteor.publish('projects', function () {
-  return Projects.find();
+Meteor.publish('projects', function (_id) {
+  return Projects.find({"users._id": _id});
 });
 
 // Issues
