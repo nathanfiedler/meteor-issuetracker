@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
+
     <meta charset="utf-8">
     <title>Issue Tracker API</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Le styles -->
+    <!-- Styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
@@ -17,100 +19,48 @@
     </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
 
-  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-  <!-- JavaScript -->
-  <script src="js/jquery-1.9.0.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+    <!-- JavaScript -->
+    <script src="js/jquery-1.9.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
-  <script type="text/javascript">
-    var _default_url = "http://localhost:3000/api/B6D49B2D0F2F16C2"; // Default meteor server and authToken from api.js
-    var _url = _default_url;
+    <script type="text/javascript">
+      var _default_url = "http://localhost:3000/api/B6D49B2D0F2F16C2"; // Default meteor server and authToken from api.js
+      var _url = _default_url;
+      
+      function resetFields() {
+        $("#_id").val("")
+        $("#title").val("");
+        $("#description").val("");
+        $("#results").val("")
+      }
     
-    function resetFields() {
-      $("#_id").val("")
-      $("#title").val("");
-      $("#description").val("");
-      $("#results").val("")
-    }
-  
-    $("document").ready(function() {
-    
-      $("#apiURL").val(_url);
-      $("#apiURL").keyup(function() {
-        if ($("#apiURL").val()) {
-          _url = $("#apiURL").val();
-        }
-        else {
-          $("#apiURL").val(_default_url);
-          _url = _default_url;
-        }
-      });
-
-      $("#button1").click(function() {
-        var _id = "";
-        var title = "";
-        var description = "";
-        resetFields();
-        var request = $.ajax({
-          type: "GET",
-          url: _url,
-          data: {action: "find", collection: "projects", _id: _id, title: title, description: description}
-        });
-        request.done(function(data) {
-          $("#results").val(data);
-        });
-        request.fail(function(jqXHR, textStatus) {
-          $("#results").val(textStatus);
-        });
-      });
-      /*
-      // Using XMLHttpRequest instead as another way to connect to the API
-      $("#button1").click(function() {
-        var _id = "";
-        var title = "";
-        var description = "";
-        var xhr = new XMLHttpRequest();
-        //xhr.open("GET", _url + "?action=find&collection=projects&_id=&title=&description=", true);
-        xhr.open("GET", _url + "?action=find&collection=projects&_id="+_id+"&title="+title+"&description="+description, true);
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState == 4) {
-            $("#results").val(xhr.responseText);
+      $("document").ready(function() {
+      
+        $("#apiURL").val(_url);
+        $("#apiURL").keyup(function() {
+          if ($("#apiURL").val()) {
+            _url = $("#apiURL").val();
           }
-        }
-        xhr.send();
-      });
-      */
-      $("#button2").click(function() {
-        var _id = "";
-        var title = "";
-        var description = "";
-        resetFields();
-        var request = $.ajax({
-          type: "GET",
-          url: _url,
-          data: {action: "find", collection: "issues", _id: _id, title: title, description: description}
+          else {
+            $("#apiURL").val(_default_url);
+            _url = _default_url;
+          }
         });
-        request.done(function(data) {
-          $("#results").val(data);
-        });
-        request.fail(function(jqXHR, textStatus) {
-          $("#results").val(textStatus);
-        });
-      });
-      $("#button3").click(function() {
-        var _id = "";
-        var title = $("#title").val();
-        var description = $("#description").val();
-        if (title) {
+
+        $("#button1").click(function() {
+          var _id = "";
+          var title = "";
+          var description = "";
           resetFields();
           var request = $.ajax({
             type: "GET",
             url: _url,
-            data: {action: "insert", collection: "projects", _id: _id, title: title, description: description}
+            data: {action: "find", collection: "projects", _id: _id, title: title, description: description}
           });
           request.done(function(data) {
             $("#results").val(data);
@@ -118,20 +68,51 @@
           request.fail(function(jqXHR, textStatus) {
             $("#results").val(textStatus);
           });
-        }
-        else alert("Enter a project title into the Title input field.");
-      });
-      $("#button4").click(function() {
-        var _id = $("#_id").val(); // This needs to be the _id of the project to insert the issue into
-        var title = $("#title").val();
-        var description = $("#description").val();
-        if (_id) {
+        });
+        /*
+        // Using XMLHttpRequest instead as another way to connect to the API
+        $("#button1").click(function() {
+          var _id = "";
+          var title = "";
+          var description = "";
+          var xhr = new XMLHttpRequest();
+          //xhr.open("GET", _url + "?action=find&collection=projects&_id=&title=&description=", true);
+          xhr.open("GET", _url + "?action=find&collection=projects&_id="+_id+"&title="+title+"&description="+description, true);
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+              $("#results").val(xhr.responseText);
+            }
+          }
+          xhr.send();
+        });
+        */
+        $("#button2").click(function() {
+          var _id = "";
+          var title = "";
+          var description = "";
+          resetFields();
+          var request = $.ajax({
+            type: "GET",
+            url: _url,
+            data: {action: "find", collection: "issues", _id: _id, title: title, description: description}
+          });
+          request.done(function(data) {
+            $("#results").val(data);
+          });
+          request.fail(function(jqXHR, textStatus) {
+            $("#results").val(textStatus);
+          });
+        });
+        $("#button3").click(function() {
+          var _id = "";
+          var title = $("#title").val();
+          var description = $("#description").val();
           if (title) {
             resetFields();
             var request = $.ajax({
               type: "GET",
               url: _url,
-              data: {action: "insert", collection: "issues", _id: _id, title: title, description: description}
+              data: {action: "insert", collection: "projects", _id: _id, title: title, description: description}
             });
             request.done(function(data) {
               $("#results").val(data);
@@ -140,63 +121,84 @@
               $("#results").val(textStatus);
             });
           }
-          else alert("Enter an issue title into the Title input field.");
-        }
-        else alert("Enter a project _id into the _id input field.");
-      });
-      
-      $("#button5").click(function() {
-        var _id = $("#_id").val(); // This needs to be the _id of the project to remove
-        var title = "";
-        var description = "";
-        if (_id) {
-          resetFields();
-          var request = $.ajax({
-            type: "GET",
-            url: _url,
-            data: {action: "remove", collection: "projects", _id: _id, title: title, description: description}
-          });
-          request.done(function(data) {
-            $("#results").val(data);
-          });
-          request.fail(function(jqXHR, textStatus) {
-            $("#results").val(textStatus);
-          });
-        }
-        else alert("Enter a project _id into the _id input field.");
-      });
-      $("#button6").click(function() {
-        var _id = $("#_id").val(); // This needs to be the _id of the issue to remove
-        var title = "";
-        var description = "";
-        if (_id) {
-          resetFields();
-          var request = $.ajax({
-            type: "GET",
-            url: _url,
-            data: {action: "remove", collection: "issues", _id: _id, title: title, description: description}
-          });
-          request.done(function(data) {
-            $("#results").val(data);
-          });
-          request.fail(function(jqXHR, textStatus) {
-            $("#results").val(textStatus);
-          });
-        }
-        else alert("Enter an issue _id into the _id input field.");
-      });
+          else alert("Enter a project title into the Title input field.");
+        });
+        $("#button4").click(function() {
+          var _id = $("#_id").val(); // This needs to be the _id of the project to insert the issue into
+          var title = $("#title").val();
+          var description = $("#description").val();
+          if (_id) {
+            if (title) {
+              resetFields();
+              var request = $.ajax({
+                type: "GET",
+                url: _url,
+                data: {action: "insert", collection: "issues", _id: _id, title: title, description: description}
+              });
+              request.done(function(data) {
+                $("#results").val(data);
+              });
+              request.fail(function(jqXHR, textStatus) {
+                $("#results").val(textStatus);
+              });
+            }
+            else alert("Enter an issue title into the Title input field.");
+          }
+          else alert("Enter a project _id into the _id input field.");
+        });
+        
+        $("#button5").click(function() {
+          var _id = $("#_id").val(); // This needs to be the _id of the project to remove
+          var title = "";
+          var description = "";
+          if (_id) {
+            resetFields();
+            var request = $.ajax({
+              type: "GET",
+              url: _url,
+              data: {action: "remove", collection: "projects", _id: _id, title: title, description: description}
+            });
+            request.done(function(data) {
+              $("#results").val(data);
+            });
+            request.fail(function(jqXHR, textStatus) {
+              $("#results").val(textStatus);
+            });
+          }
+          else alert("Enter a project _id into the _id input field.");
+        });
+        $("#button6").click(function() {
+          var _id = $("#_id").val(); // This needs to be the _id of the issue to remove
+          var title = "";
+          var description = "";
+          if (_id) {
+            resetFields();
+            var request = $.ajax({
+              type: "GET",
+              url: _url,
+              data: {action: "remove", collection: "issues", _id: _id, title: title, description: description}
+            });
+            request.done(function(data) {
+              $("#results").val(data);
+            });
+            request.fail(function(jqXHR, textStatus) {
+              $("#results").val(textStatus);
+            });
+          }
+          else alert("Enter an issue _id into the _id input field.");
+        });
 
-    });
-  </script>
+      });
+    </script>
 
-  <!-- Icons -->
-  <link rel="shortcut icon" href="ico/favicon.ico">
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+    <!-- Icons -->
+    <link rel="shortcut icon" href="ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
 
-</head>
+  </head>
 
   <body>
 
@@ -274,4 +276,5 @@
     </div>
 
   </body>
+
 </html>
