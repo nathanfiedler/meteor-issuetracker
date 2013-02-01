@@ -31,6 +31,8 @@ Notes
     * Assign yourself as a contributor to an existing project; select a project from the project list, select on the Users tab in the project nav bar, and select the checkbox next to your (or anybody else's) email/account. Or...
     * Do both of the above steps.  
   
+  Log back in as the other user, and you will have the appropriate permissions.
+
 * To disable the wysihtml5 editor, set `wysihtml5Enabled` to `false` in `client/client.js`.
 
 * Includes a simple API using RESTful GET! Look in the 'tests/api-tests' directory for two examples on how to interact with it. Change `localhost:3000` to `issuetracker.meteor.com` in the Meteor URL text field to perform actions on the demo below!
