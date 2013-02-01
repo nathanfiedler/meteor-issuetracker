@@ -58,6 +58,7 @@ var router = connect.middleware.router(function(route) {
                   res.end();
                   return;
               }
+              break;
             case "insert":
               var cursor;
               var documents = [];
@@ -142,6 +143,7 @@ var router = connect.middleware.router(function(route) {
                 res.end();
                 return;
               }
+              break;
             case "remove":
               if (_url.query["_id"]) {
                 switch (_url.query["collection"].toLowerCase()) {
@@ -163,6 +165,7 @@ var router = connect.middleware.router(function(route) {
                       res.end();
                       return;
                     }
+                    break;
                   case "issues":
                     var issue = Issues.findOne(_url.query["_id"]);
                     if (issue) {
@@ -177,6 +180,7 @@ var router = connect.middleware.router(function(route) {
                       res.end();
                       return;
                     }
+                    break;
                   default:
                     // ERROR: COLLECTION NOT SUPPORTED
                     console.log(JSON.stringify([{error:"COLLECTION NOT SUPPORTED"}]));
@@ -198,6 +202,7 @@ var router = connect.middleware.router(function(route) {
                 res.end();
                 return;
               }
+              break;
             default:
               // ERROR: ACTION NOT SUPPORTED
               console.log(JSON.stringify([{error:"ACTION NOT SUPPORTED"}]));
