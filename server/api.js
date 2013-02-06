@@ -15,6 +15,16 @@ var router = connect.middleware.router(function(route) {
         var _fiber = Fiber.current;
         var _url = url.parse(req.url, true);
         
+        var adminUser;
+        var cursor;
+        var documents = [];
+        var insert_id;
+        var issue;
+        var issues;
+        var lastIssueNumber;
+        var nextIssueNumber;
+        var project;
+        
         res.setHeader("Access-Control-Allow-Origin", "*");
         //res.setHeader("Access-Control-Allow-Origin", "http://www.yoursite.com");
         res.setHeader("Access-Control-Allow-Methods", "GET");
@@ -24,8 +34,6 @@ var router = connect.middleware.router(function(route) {
         if (_url.query["action"] && _url.query["collection"]) {
           switch (_url.query["action"].toLowerCase()) {
             case "find":
-              var cursor;
-              var documents = [];
               switch (_url.query["collection"].toLowerCase()) {
                 case "projects":
                   cursor = Projects.find();
@@ -60,22 +68,19 @@ var router = connect.middleware.router(function(route) {
               }
               break;
             case "insert":
-              var cursor;
-              var documents = [];
-              var insert_id;
               if (_url.query["title"].stripHTML()) {
                 switch (_url.query["collection"].toLowerCase()) {
                   case "projects":
-                    var adminUser = Meteor.users.findOne({"emails.0.address": adminEmail});
+                    adminUser = Meteor.users.findOne({"emails.0.address": adminEmail});
                     insert_id = Projects.insert({projectTitle: _url.query["title"].stripHTML(), projectDescription: _url.query["description"].sanitizeHTML(), projectCreatedDate: ((new Date()).getTime()), lastIssueNumber: 0, users: [{_id: adminUser._id}]});
                     cursor = Projects.find({_id: insert_id});
                     break;
                   case "issues":
                     if (_url.query["_id"]) {
-                      var project = Projects.findOne(_url.query["_id"]);
+                      project = Projects.findOne(_url.query["_id"]);
                       if (project) {
-                        var lastIssueNumber = project.lastIssueNumber;
-                        var nextIssueNumber = lastIssueNumber + 1;
+                        lastIssueNumber = project.lastIssueNumber;
+                        nextIssueNumber = lastIssueNumber + 1;
                         insert_id = Issues.insert({_pid: _url.query["_id"], issueNumber: nextIssueNumber, issueTitle: _url.query["title"].stripHTML(), issueDescription: _url.query["description"].sanitizeHTML(), issueStatus: "New", issueCreatedDate: ((new Date()).getTime())});
                         if (insert_id) {
                           Projects.update(_url.query["_id"], {$set: {lastIssueNumber: nextIssueNumber}});
@@ -148,9 +153,9 @@ var router = connect.middleware.router(function(route) {
               if (_url.query["_id"]) {
                 switch (_url.query["collection"].toLowerCase()) {
                   case "projects":
-                    var project = Projects.findOne(_url.query["_id"]);
+                    project = Projects.findOne(_url.query["_id"]);
                     if (project) {
-                      var issues = Issues.find({_pid: _url.query["_id"]});
+                      issues = Issues.find({_pid: _url.query["_id"]});
                       issues.forEach(function(document) {
                         Issues.remove({_id: document._id});
                       });
@@ -167,7 +172,7 @@ var router = connect.middleware.router(function(route) {
                     }
                     break;
                   case "issues":
-                    var issue = Issues.findOne(_url.query["_id"]);
+                    issue = Issues.findOne(_url.query["_id"]);
                     if (issue) {
                       Issues.remove({_id: _url.query["_id"]});
                       break;
