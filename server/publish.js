@@ -116,3 +116,4 @@ Issues.allow({
 Meteor.publish('issues', function (_pid) {
   return Issues.find({_pid: _pid});
 });
+
