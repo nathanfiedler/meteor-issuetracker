@@ -19,6 +19,11 @@ Built With
 * "f" is for Format & WHAT THE diff?? -- http://fisforformat.sourceforge.net  
 
 
+Compatibility
+-------------------
+Meteor 0.5.7+  
+
+
 Notes
 -------------------
 * In `server/config.js` and `server/api.js`, you may want to change the default variable values for your project.
