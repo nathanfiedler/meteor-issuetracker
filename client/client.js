@@ -34,7 +34,7 @@ Meteor.startup(function () {
   $.blockUI.defaults.css.border = "0px";
   $.blockUI.defaults.overlayCSS.backgroundColor = "#fff";
 
-  Meteor.autosubscribe(function () {
+  Meteor.autorun(function () {
     if (Meteor.user()) {
       Meteor.subscribe("userData", function onComplete() {
         // Subscription Complete!
