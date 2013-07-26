@@ -40,7 +40,9 @@ Notes
 
 * To disable the wysihtml5 editor, set `wysihtml5Enabled` to `false` in `client/client.js`.
 
-* (Disabled for 0.6.0+) Includes a simple API using RESTful GET! Look in the `tests/api-tests` directory for two examples on how to interact with it. In the `html_and_jquery` test package, change `localhost:3000` to `issuetracker.meteor.com` in the Meteor URL text field to perform actions on the hosted demo below!
+* **(Disabled for 0.6.0+)** Includes a simple API using RESTful GET! Look in the `tests/api-tests` directory for two examples on how to interact with it. In the `html_and_jquery` test package, change `localhost:3000` to `issuetracker.meteor.com` in the Meteor URL text field to perform actions on the hosted demo below!
+
+* There are some display bugs that eventually need to be fixed when I get a chance. Way to go and break my stuff, new versions of Meteor...you were working fine in 0.5.x!
 
 
 Setup
