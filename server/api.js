@@ -1,4 +1,5 @@
 // You may want to change these variable values for your project
+/*
 var apiEnabled = true;
 var apiAuthToken = "B6D49B2D0F2F16C2";
 // -------------------------------------------------------------
@@ -254,4 +255,5 @@ String.prototype.stripHTML = function() {
 };
 
 if (apiEnabled) app.use(router);
+*/
 

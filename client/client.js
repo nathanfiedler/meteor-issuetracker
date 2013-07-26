@@ -34,7 +34,7 @@ Meteor.startup(function () {
   $.blockUI.defaults.css.border = "0px";
   $.blockUI.defaults.overlayCSS.backgroundColor = "#fff";
 
-  Meteor.autorun(function () {
+  Deps.autorun(function () {
     if (Meteor.user()) {
       Meteor.subscribe("userData", function onComplete() {
         // Subscription Complete!
@@ -206,7 +206,7 @@ Template.project.helpers({
 Template.projectInfo.rendered = function() {
   if (Session.get("selected_pid")) {
     var project = Projects.findOne(Session.get("selected_pid"));
-    Meteor.flush();
+    Deps.flush();
     if (project) {
       if (Meteor.user().role === "admin") {
         if (Session.get("debug")) {
@@ -272,7 +272,7 @@ Template.projectInfo.rendered = function() {
     }
   }
   else {
-    Meteor.flush();
+    Deps.flush();
     if (Meteor.user().role === "admin") {
       $("#projectInfoCreate_ProjectTitle").val("");
       $("#projectInfoCreate_ProjectDescription").val("");
@@ -542,7 +542,7 @@ Template.issue.events({
         Session.set("selected_id", this._id);
         if (!isNull) { // Handle issue selection from another issue
           var issue = Issues.findOne(Session.get("selected_id"));
-          Meteor.flush();
+          Deps.flush();
           if (issue) {
             if (Session.get("debug")) {
               $("#issueInfoUpdate_Issue_id").val(Session.get("selected_id"));
@@ -605,7 +605,7 @@ Template.issue.helpers({
 Template.issueInfo.rendered = function() {
   if (Session.get("selected_id")) {
     var issue = Issues.findOne(Session.get("selected_id"));
-    Meteor.flush();
+    Deps.flush();
     if (issue) {
       if (Session.get("debug")) {
         $("#issueInfoUpdate_Issue_id").val(Session.get("selected_id"));
@@ -659,7 +659,7 @@ Template.issueInfo.rendered = function() {
     }
   }
   else {
-    Meteor.flush();
+    Deps.flush();
     $("#issueInfoCreate_IssueTitle").val("");
     $("#issueInfoCreate_IssueDescription").val("");
     if (wysihtml5Enabled && $("#issueInfoCreate_IssueDescription").length) {

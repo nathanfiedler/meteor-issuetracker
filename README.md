@@ -21,12 +21,12 @@ Built With
 
 Compatibility
 -------------------
-Meteor 0.5.7+  
+Meteor 0.6.4.1  
 
 
 Notes
 -------------------
-* In `server/config.js` and `server/api.js`, you may want to change the default variable values for your project.
+* In `server/config.js`, you may want to change the default variable values for your project.
 
 * When you create a new user and login, you are not allowed to contribute to any available projects, nor are you allowed to create projects. This is by design.
 
@@ -40,7 +40,7 @@ Notes
 
 * To disable the wysihtml5 editor, set `wysihtml5Enabled` to `false` in `client/client.js`.
 
-* Includes a simple API using RESTful GET! Look in the `tests/api-tests` directory for two examples on how to interact with it. In the `html_and_jquery` test package, change `localhost:3000` to `issuetracker.meteor.com` in the Meteor URL text field to perform actions on the hosted demo below!
+* (Disabled for 0.6.0+) Includes a simple API using RESTful GET! Look in the `tests/api-tests` directory for two examples on how to interact with it. In the `html_and_jquery` test package, change `localhost:3000` to `issuetracker.meteor.com` in the Meteor URL text field to perform actions on the hosted demo below!
 
 
 Setup
